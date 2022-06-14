@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIME</title>
+
+<style>
+  
+  div {
+    text-align: center;
+  }
+
+body{
+  background-color: black;
+  }
+
+  h1{
+    color: white;
+  }
+
+  .botao-start {
+    height: 2.7em;
+    width: 5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(28, 180, 28);
+   }
+
+  .botao-pause {
+    height: 2.7em;
+    width: 5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: grey;
+  }
+  .botao-stop {
+    height: 2.7em;
+    width: 5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(214, 13, 13);
+    }
+
+    .botao-start:hover{
+      background-color: rgb(12, 243, 12);
+    }
+    .botao-pause:hover{
+      background-color: rgb(177, 171, 171);
+    }
+    .botao-stop:hover{
+      background-color: rgb(255, 0, 0);
+    }
+    </style>
+
+</head>
+<body>
+  <div>
+  <h1 id="watch">00:00:00</h1>
+  <button class="botao-start" onclick="start()" >Iniciar</button>
+  <button class="botao-pause" onclick="pause()" >Pausar</button>
+  <button class="botao-stop" onclick="stop()" >Parar</button>
+  </div>
+
+  <script>
+
+    var sec=0
+    var min=0
+    var hr=0
+
+    var interval
+
+    function twoDigits(digit) {
+      if(digit<10) {
+        return('0'+digit)
+      } else {
+          return(digit)
+        }
+      }
+    
+    
+    function start() {
+      watch()
+      interval= setInterval(watch,1000)
+    }
+    
+    function pause() {
+      clearInterval(interval)
+    }
+    
+    function stop() {
+      clearInterval(interval)
+      sec=0
+      min=0
+     document.getElementById('watch').innerText='00:00:00'
+
+    }
+    
+    function watch() {
+      sec++
+      if(sec==60) {
+        min++
+        sec=0
+        if(min==60) {
+          min=0
+          hr++
+        }
+      }
+      document.getElementById('watch').innerText=twoDigits(hr)+':'+twoDigits(min)+':'+twoDigits(sec)
+    
+    }
+    
+    </script>
+
+
+
+
+</body>
+</html>
